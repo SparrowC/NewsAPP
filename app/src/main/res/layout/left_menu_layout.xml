@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@drawable/menu_item_bg_select">
+
+    <ImageView
+        android:id="@+id/iv_userImage"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/image"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/iv_userImage"
+        android:layout_marginTop="50dp">
+
+        <Button
+            android:id="@+id/btn_home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="首页"
+            android:textColor="@drawable/button_text_selector"
+            android:textSize="30dp"
+            android:background="@android:color/transparent"
+            android:drawableLeft="@drawable/menu_arr_select"
+            android:drawablePadding="10dp"/>
+
+        <Button
+            android:id="@+id/btn_newsCenter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="新闻中心"
+            android:textColor="@drawable/button_text_selector"
+            android:textSize="30dp"
+            android:drawableLeft="@drawable/menu_arr_select"
+            android:background="@android:color/transparent"
+            android:layout_marginTop="20dp"
+            android:drawablePadding="10dp"/>
+
+        <Button
+            android:id="@+id/btn_setting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="设置"
+            android:textColor="@drawable/button_text_selector"
+            android:textSize="30dp"
+            android:drawableLeft="@drawable/menu_arr_select"
+            android:background="@android:color/transparent"
+            android:layout_marginTop="20dp"
+            android:drawablePadding="10dp"/>
+
+        <Button
+            android:id="@+id/btn_menuShare"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="分享"
+            android:textColor="@drawable/button_text_selector"
+            android:textSize="30dp"
+            android:drawableLeft="@drawable/menu_arr_select"
+            android:background="@android:color/transparent"
+            android:layout_marginTop="20dp"
+            android:drawablePadding="10dp"/>
+    </LinearLayout>
+</RelativeLayout>
