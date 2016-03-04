@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:sliding="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+    <!--<com.vonnie.mynewsapp.view.DrawView-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--vonnie:menuWidth="400dp">-->
+    <!--<LinearLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:orientation="horizontal">-->
+    <!--<FrameLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:background="#f00">-->
+    <!--</FrameLayout>-->
+    <!--<FrameLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:background="#0f0">-->
+
+    <!--</FrameLayout>-->
+    <!--</LinearLayout>-->
+    <!--</com.vonnie.mynewsapp.view.DrawView>-->
+    <com.jeremyfeinstein.slidingmenu.lib.SlidingMenu
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/slidingmenulayout"
+        sliding:viewAbove="@layout/right_content_layout"
+        sliding:viewBehind="@layout/left_menu_layout"
+        sliding:touchModeAbove="margin"
+        sliding:fadeEnabled="true"
+        sliding:shadowWidth="10dp"
+        sliding:behindWidth="150dp">
+
+    </com.jeremyfeinstein.slidingmenu.lib.SlidingMenu>
+</LinearLayout>

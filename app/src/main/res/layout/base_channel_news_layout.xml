@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+    <com.vonnie.mynewsapp.view.PullRefreshListView
+    android:id="@+id/lv_newList"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"/>
+    <RelativeLayout
+        android:id="@+id/rl_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+        <ImageView
+            android:id="@+id/iv_refresh"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/refresh"
+            android:layout_centerInParent="true"/>
+        <TextView
+            android:id="@+id/tv_refreshText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:text="加载失败，点击刷新"
+            android:textSize="20dp"
+            android:layout_below="@id/iv_refresh"
+            android:layout_centerHorizontal="true"/>
+    </RelativeLayout>
+</FrameLayout>

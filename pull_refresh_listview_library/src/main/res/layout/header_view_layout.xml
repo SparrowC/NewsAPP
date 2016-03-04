@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="80dp"
+    android:orientation="horizontal">
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:src="@drawable/common_listview_headview_red_arrow"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/tv_refreshTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="下拉刷新"
+            android:textSize="30dp"
+            android:layout_centerHorizontal="true"
+            android:paddingTop="5dp"
+            android:textColor="#f00"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_refreshTitle"
+            android:text="最后刷新 2016年3月1日 11:31:32"
+            android:textSize="18dp"
+            android:layout_centerHorizontal="true"
+            android:paddingTop="10dp"/>
+    </RelativeLayout>
+</LinearLayout>

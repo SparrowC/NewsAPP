@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="DrawView">
+        <!-- 参数为布局文件 如: R.layout.left-->
+        <attr name="left_menu" format="integer"/>
+        <attr name="right_content" format="integer"/>
+        <attr name="menuWidth" format="dimension"/>
+    </declare-styleable>
+</resources>

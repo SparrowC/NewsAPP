@@ -1,0 +1,4 @@
+include ':app', ':slidingmenu_library', ':xutils'
+project(':slidingmenu_library').projectDir = new File('app/libs/library')
+include ':indicator_library'
+project(':xutils').projectDir = new File('app/libs/xutils')
