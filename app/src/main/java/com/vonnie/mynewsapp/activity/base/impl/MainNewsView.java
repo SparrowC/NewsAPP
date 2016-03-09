@@ -1,5 +1,9 @@
 package com.vonnie.mynewsapp.activity.base.impl;
 
+<<<<<<< HEAD
+=======
+import android.os.Bundle;
+>>>>>>> origin/master
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
@@ -11,12 +15,23 @@ import android.widget.Toast;
 
 import com.viewpagerindicator.TabPageIndicator;
 import com.vonnie.mynewsapp.R;
+<<<<<<< HEAD
 import com.vonnie.mynewsapp.activity.base.BaseMainContent;
 import com.vonnie.mynewsapp.activity.base.ChannelNewsView;
+=======
+import com.vonnie.mynewsapp.activity.MainActivity;
+import com.vonnie.mynewsapp.activity.base.ChannelNewsView;
+import com.vonnie.mynewsapp.activity.base.BaseMainContent;
+import com.vonnie.mynewsapp.activity.base.MyServerChannelNewsView;
+>>>>>>> origin/master
 import com.vonnie.mynewsapp.beans.NewsChannel;
 import com.vonnie.mynewsapp.utils.DateUtils;
 import com.vonnie.mynewsapp.utils.NetUtils;
 
+<<<<<<< HEAD
+=======
+import java.io.Serializable;
+>>>>>>> origin/master
 import java.util.ArrayList;
 import java.util.List;
 
@@ -176,6 +191,7 @@ public class MainNewsView extends BaseMainContent {
         }).start();
     }
 
+<<<<<<< HEAD
     private int curItem = 0;
     private class MyOnPageChangeListener implements ViewPager.OnPageChangeListener {
         @Override
@@ -184,11 +200,22 @@ public class MainNewsView extends BaseMainContent {
                 return;
             }
             vp_newsMain.setCurrentItem(curItem);
+=======
+
+    private class MyOnPageChangeListener implements ViewPager.OnPageChangeListener {
+        @Override
+        public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+>>>>>>> origin/master
         }
 
         @Override
         public void onPageSelected(int position) {
+<<<<<<< HEAD
             curItem = position;
+=======
+
+>>>>>>> origin/master
         }
 
         @Override
