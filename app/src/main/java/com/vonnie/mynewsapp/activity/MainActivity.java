@@ -1,23 +1,21 @@
 package com.vonnie.mynewsapp.activity;
 
+import android.annotation.TargetApi;
+import android.graphics.Outline;
+import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
-import android.os.Message;
-import android.os.PersistableBundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
-import android.view.ViewGroup;
+import android.view.ViewOutlineProvider;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.TextView;
 
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.vonnie.mynewsapp.R;
@@ -28,9 +26,8 @@ import com.vonnie.mynewsapp.activity.base.impl.MainNewsView;
 import com.vonnie.mynewsapp.activity.base.impl.MainSettingView;
 import com.vonnie.mynewsapp.activity.base.impl.MainSmartServiceView;
 import com.vonnie.mynewsapp.beans.NewsChannel;
-import com.vonnie.mynewsapp.utils.NetUtils;
+import com.vonnie.mynewsapp.view.NoScrollViewPager;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,10 +36,11 @@ import java.util.List;
  */
 public class MainActivity extends FragmentActivity {
     private SlidingMenu slidingmenulayout;
-    private ViewPager vp_main;
+    private NoScrollViewPager vp_main;
     private RadioButton rb_home,rb_newscenter,rb_smartservice,rb_gov,rb_setting;
     private Button btn_home, btn_newsCenter, btn_setting, btn_menuShare;
     private RadioGroup rg_bottom;
+    private ImageView iv_userImage;
     private String[] mTitle ={"首页","新闻中心","智慧服务","政务","设置"};
     private List<BaseMainContent> mainViewList;
     private List<NewsChannel.ShowapiResBodyEntity.ChannelListEntity> channelList;
@@ -59,7 +57,7 @@ public class MainActivity extends FragmentActivity {
     protected void initView() {
         slidingmenulayout= (SlidingMenu) findViewById(R.id.slidingmenulayout);
 
-        vp_main= (ViewPager) findViewById(R.id.vp_main);
+        vp_main = (NoScrollViewPager) findViewById(R.id.vp_main);
         rg_bottom = (RadioGroup) findViewById(R.id.rg_bottom);
 
         //menu button
@@ -67,6 +65,7 @@ public class MainActivity extends FragmentActivity {
         btn_newsCenter = (Button) findViewById(R.id.btn_newsCenter);
         btn_setting = (Button) findViewById(R.id.btn_setting);
         btn_menuShare = (Button) findViewById(R.id.btn_menuShare);
+        iv_userImage = (ImageView) findViewById(R.id.iv_userImage);
 
         rb_home= (RadioButton) findViewById(R.id.rb_home);
         rb_newscenter= (RadioButton) findViewById(R.id.rb_newscenter);
@@ -96,7 +95,7 @@ public class MainActivity extends FragmentActivity {
         }
     }
 
-
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     protected void initData() {
         vp_main.setAdapter(new MainPagerAdapter(getSupportFragmentManager()));
         vp_main.setCurrentItem(0);
@@ -128,10 +127,18 @@ public class MainActivity extends FragmentActivity {
         rb_gov.setOnClickListener(new MyOnRadioButtonClickedListener(3));
         rb_setting.setOnClickListener(new MyOnRadioButtonClickedListener(4));
 
+        //left menu
         btn_home.setOnClickListener(new MyOnButtonClickListener());
         btn_newsCenter.setOnClickListener(new MyOnButtonClickListener());
         btn_menuShare.setOnClickListener(new MyOnButtonClickListener());
         btn_setting.setOnClickListener(new MyOnButtonClickListener());
+        iv_userImage.setOutlineProvider(new ViewOutlineProvider() {
+            @Override
+            public void getOutline(View view, Outline outline) {
+                outline.setOval(0, 0, view.getWidth(), view.getHeight());
+            }
+        });
+        iv_userImage.setClipToOutline(true);
     }
 
     public SlidingMenu getSlidingMenu()
@@ -156,26 +163,6 @@ public class MainActivity extends FragmentActivity {
             return mainViewList.size();
         }
 
-//        @Override
-//        public int getCount() {
-//            return mainViewList.size();
-//        }
-//
-//        @Override
-//        public boolean isViewFromObject(View view, Object object) {
-//            return view==object;
-//        }
-//
-//        @Override
-//        public Object instantiateItem(ViewGroup container, int position) {
-//            container.addView(mainViewList.get(position).getView());
-//            return mainViewList.get(position).getView();
-//        }
-//
-//        @Override
-//        public void destroyItem(ViewGroup container, int position, Object object) {
-//            container.removeView(mainViewList.get(position).getView());
-//        }
     }
 
     private class MyOnRadioButtonClickedListener implements View.OnClickListener {
@@ -194,17 +181,18 @@ public class MainActivity extends FragmentActivity {
         @Override
         public void onClick(View v) {
             if (v == btn_home) {
-                vp_main.setCurrentItem(0);
+                vp_main.setCurrentItem(0, false);
             }
             if (v == btn_menuShare) {
 
             }
             if (v == btn_newsCenter) {
-                vp_main.setCurrentItem(1);
+                vp_main.setCurrentItem(1, false);
             }
             if (v == btn_setting) {
-                vp_main.setCurrentItem(4);
+                vp_main.setCurrentItem(4, false);
             }
+            slidingmenulayout.toggle();
             setBottomVisibility(true);
         }
     }

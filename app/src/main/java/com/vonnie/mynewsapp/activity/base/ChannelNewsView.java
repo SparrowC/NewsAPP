@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +19,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.viewpagerindicator.CirclePageIndicator;
 import com.vonnie.mynewsapp.R;
 import com.vonnie.mynewsapp.activity.MainActivity;
 import com.vonnie.mynewsapp.activity.NewsDetailActivity;
@@ -27,6 +30,7 @@ import com.vonnie.mynewsapp.utils.NetUtils;
 import com.vonnie.mynewsapp.utils.SharedPreferencesUtils;
 import com.vonnie.mynewsapp.view.PullRefreshListView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -44,6 +48,28 @@ public class ChannelNewsView {
     private ImageView iv_refresh;
     private TextView tv_refreshText;
     private boolean isRefreshViewShow=false;
+    //轮播View
+    private CirclePageIndicator cpi_indicator;
+    private ViewPager vp_carousel;
+    private TextView tv_carouselTitle;
+    private List<ImageView> imageViews;
+    private String[] carouselTitles = {"科比", "8VS24", "star"};
+    private int[] imageIDs = {R.drawable.kobe, R.drawable.kobe1, R.drawable.kobe2};
+    private Handler handler = new Handler();
+    private int curIndex = 0;
+    private MyRunable mRunable = new MyRunable();
+    private int postTime = 2000;
+    private boolean isFirstTime = true;
+
+    //在UI线程中执行的
+    private class MyRunable implements Runnable {
+        @Override
+        public void run() {
+            curIndex = (curIndex + 1) % 3;
+            vp_carousel.setCurrentItem(curIndex);
+            handler.postDelayed(mRunable, postTime);
+        }
+    }
 
     final private int UI_REFRESH =2;
     final private int LOAD_NEWS_DETAIL_SUCCESS =1;
@@ -88,8 +114,39 @@ public class ChannelNewsView {
         initView();
     }
 
+    private void initView() {
+        root = LayoutInflater.from(mActivity).inflate(R.layout.base_channel_news_layout, null);
+        lv_newList = (PullRefreshListView) root.findViewById(R.id.lv_newList);
+        rl_refresh = (RelativeLayout) root.findViewById(R.id.rl_refresh);
+        iv_refresh = (ImageView) root.findViewById(R.id.iv_refresh);
+        tv_refreshText = (TextView) root.findViewById(R.id.tv_refreshText);
+
+        iv_refresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                RotateAnimation ra = new RotateAnimation(0, 360, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+                ra.setRepeatCount(3);
+                ra.setDuration(900);
+
+                iv_refresh.startAnimation(ra);
+                tv_refreshText.setText("正在刷新...");
+                getDataFromServer(0);
+            }
+        });
+        View view = LayoutInflater.from(mActivity).inflate(R.layout.carousel_layout, null);
+        cpi_indicator = (CirclePageIndicator) view.findViewById(R.id.cpi_indicator);
+        vp_carousel = (ViewPager) view.findViewById(R.id.vp_carousel);
+        tv_carouselTitle = (TextView) view.findViewById(R.id.tv_carouselTitle);
+
+        lv_newList.addHeaderView(view);
+
+        getDataFromLocal();
+        getDataFromServer(0);
+
+    }
     //加载数据到界面
     private void initData() {
+        initCarousel();
         listAdapter=new MyNewsListAdapter();
         lv_newList.setAdapter(listAdapter);
 
@@ -97,7 +154,7 @@ public class ChannelNewsView {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(mActivity, NewsDetailActivity.class);
-                String url = contentList.get(position - 1).getLink();
+                String url = contentList.get(position - 2).getLink();
                 intent.putExtra("url", url);
                 mActivity.startActivity(intent);
             }
@@ -122,33 +179,71 @@ public class ChannelNewsView {
 
     }
 
-    private void refreshView() {
-        listAdapter.notifyDataSetChanged();
-        Toast.makeText(mActivity,"刷新成功",Toast.LENGTH_SHORT).show();
-    }
+    private void initCarousel() {
+        imageViews = new ArrayList<>();
+        for (int i = 0; i < imageIDs.length; i++) {
+            ImageView iv = new ImageView(mActivity);
+            iv.setImageResource(imageIDs[i]);
+            imageViews.add(iv);
+        }
 
-    private void initView() {
-        root=LayoutInflater.from(mActivity).inflate(R.layout.base_channel_news_layout,null);
-        lv_newList= (PullRefreshListView) root.findViewById(R.id.lv_newList);
-        rl_refresh= (RelativeLayout) root.findViewById(R.id.rl_refresh);
-        iv_refresh= (ImageView) root.findViewById(R.id.iv_refresh);
-        tv_refreshText= (TextView) root.findViewById(R.id.tv_refreshText);
-
-        iv_refresh.setOnClickListener(new View.OnClickListener() {
+        vp_carousel.setAdapter(new PagerAdapter() {
             @Override
-            public void onClick(View v) {
-                RotateAnimation ra = new RotateAnimation(0, 360, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
-                ra.setRepeatCount(3);
-                ra.setDuration(900);
+            public int getCount() {
+                return imageViews.size();
+            }
 
-                iv_refresh.startAnimation(ra);
-                tv_refreshText.setText("正在刷新...");
-                getDataFromServer(0);
+            @Override
+            public boolean isViewFromObject(View view, Object object) {
+                return view == object;
+            }
+
+            @Override
+            public void destroyItem(ViewGroup container, int position, Object object) {
+                container.removeView((View) object);
+            }
+
+            @Override
+            public Object instantiateItem(ViewGroup container, int position) {
+                ImageView iv = imageViews.get(position);
+                iv.setScaleType(ImageView.ScaleType.FIT_XY);
+                container.addView(iv);
+                return iv;
             }
         });
-        getDataFromLocal();
-        getDataFromServer(0);
+        vp_carousel.setCurrentItem(0);
+        cpi_indicator.setVisibility(View.VISIBLE);
+        cpi_indicator.setViewPager(vp_carousel);
+        cpi_indicator.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                tv_carouselTitle.setText(carouselTitles[position]);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+
+        if (isFirstTime) {
+            handler.postDelayed(mRunable, postTime);
+            isFirstTime = false;
+        }
+
     }
+
+    private void refreshView() {
+        listAdapter.notifyDataSetChanged();
+        Toast.makeText(mActivity, "刷新成功", Toast.LENGTH_SHORT).show();
+    }
+
+
 
     /**
      * 从本地获取数据

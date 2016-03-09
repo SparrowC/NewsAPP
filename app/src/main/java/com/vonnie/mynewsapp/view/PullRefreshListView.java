@@ -72,7 +72,6 @@ public class PullRefreshListView extends ListView {
 
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
-
         switch (ev.getAction())
         {
             case MotionEvent.ACTION_DOWN:
@@ -188,4 +187,6 @@ public class PullRefreshListView extends ListView {
         void OnReleaseRefresh();
         void OnRefreshing();
     }
+
+
 }
