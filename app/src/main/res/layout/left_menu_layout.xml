@@ -18,7 +18,7 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@id/iv_userImage"
         android:layout_marginTop="50dp">
-<<<<<<< HEAD
+
 
         <Button
             android:id="@+id/btn_home"
@@ -54,7 +54,6 @@
             android:background="@android:color/transparent"
             android:layout_marginTop="20dp"
             android:drawablePadding="10dp"/>
-
         <Button
             android:id="@+id/btn_menuShare"
             android:layout_width="wrap_content"
@@ -64,42 +63,9 @@
             android:textSize="30dp"
             android:drawableLeft="@drawable/menu_arr_select"
             android:background="@android:color/transparent"
-=======
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="设置"
-            android:textColor="#fff"
-            android:textSize="30dp"
-            android:drawableLeft="@drawable/menu_arr_select"
-            android:drawablePadding="10dp"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="新闻"
-            android:textColor="#fff"
-            android:textSize="30dp"
-            android:drawableLeft="@drawable/menu_arr_select"
             android:layout_marginTop="20dp"
             android:drawablePadding="10dp"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="组图"
-            android:textColor="#fff"
-            android:textSize="30dp"
-            android:drawableLeft="@drawable/menu_arr_select"
-            android:layout_marginTop="20dp"
-            android:drawablePadding="10dp"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="分享"
-            android:textColor="#fff"
-            android:textSize="30dp"
-            android:drawableLeft="@drawable/menu_arr_select"
->>>>>>> origin/master
-            android:layout_marginTop="20dp"
-            android:drawablePadding="10dp"/>
+
+
     </LinearLayout>
 </RelativeLayout>

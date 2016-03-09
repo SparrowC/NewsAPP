@@ -3,31 +3,8 @@
               xmlns:sliding="http://schemas.android.com/apk/res-auto"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
-<<<<<<< HEAD
 
-=======
-    <!--<com.vonnie.mynewsapp.view.DrawView-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent"-->
-    <!--vonnie:menuWidth="400dp">-->
-    <!--<LinearLayout-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent"-->
-    <!--android:orientation="horizontal">-->
-    <!--<FrameLayout-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent"-->
-    <!--android:background="#f00">-->
-    <!--</FrameLayout>-->
-    <!--<FrameLayout-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent"-->
-    <!--android:background="#0f0">-->
 
-    <!--</FrameLayout>-->
-    <!--</LinearLayout>-->
-    <!--</com.vonnie.mynewsapp.view.DrawView>-->
->>>>>>> origin/master
     <com.jeremyfeinstein.slidingmenu.lib.SlidingMenu
         android:layout_width="match_parent"
         android:layout_height="match_parent"

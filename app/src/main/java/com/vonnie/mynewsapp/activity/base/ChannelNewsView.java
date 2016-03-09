@@ -4,11 +4,8 @@ import android.content.Intent;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
-<<<<<<< HEAD
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-=======
->>>>>>> origin/master
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,35 +15,22 @@ import android.view.animation.RotateAnimation;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-<<<<<<< HEAD
-=======
-import android.widget.ListView;
->>>>>>> origin/master
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-<<<<<<< HEAD
 import com.viewpagerindicator.CirclePageIndicator;
-=======
->>>>>>> origin/master
 import com.vonnie.mynewsapp.R;
 import com.vonnie.mynewsapp.activity.MainActivity;
 import com.vonnie.mynewsapp.activity.NewsDetailActivity;
 import com.vonnie.mynewsapp.beans.NewsDetails;
-<<<<<<< HEAD
 import com.vonnie.mynewsapp.global.Config;
-=======
->>>>>>> origin/master
 import com.vonnie.mynewsapp.utils.DateUtils;
 import com.vonnie.mynewsapp.utils.NetUtils;
 import com.vonnie.mynewsapp.utils.SharedPreferencesUtils;
 import com.vonnie.mynewsapp.view.PullRefreshListView;
 
-<<<<<<< HEAD
 import java.util.ArrayList;
-=======
->>>>>>> origin/master
 import java.util.List;
 
 /**
@@ -64,7 +48,6 @@ public class ChannelNewsView {
     private ImageView iv_refresh;
     private TextView tv_refreshText;
     private boolean isRefreshViewShow=false;
-<<<<<<< HEAD
     //轮播View
     private CirclePageIndicator cpi_indicator;
     private ViewPager vp_carousel;
@@ -75,7 +58,7 @@ public class ChannelNewsView {
     private Handler handler = new Handler();
     private int curIndex = 0;
     private MyRunable mRunable = new MyRunable();
-    private int postTime = 2000;
+    private int postTime = 3500;
     private boolean isFirstTime = true;
 
     //在UI线程中执行的
@@ -87,8 +70,6 @@ public class ChannelNewsView {
             handler.postDelayed(mRunable, postTime);
         }
     }
-=======
->>>>>>> origin/master
 
     final private int UI_REFRESH =2;
     final private int LOAD_NEWS_DETAIL_SUCCESS =1;
@@ -133,7 +114,6 @@ public class ChannelNewsView {
         initView();
     }
 
-<<<<<<< HEAD
     private void initView() {
         root = LayoutInflater.from(mActivity).inflate(R.layout.base_channel_news_layout, null);
         lv_newList = (PullRefreshListView) root.findViewById(R.id.lv_newList);
@@ -167,10 +147,7 @@ public class ChannelNewsView {
     //加载数据到界面
     private void initData() {
         initCarousel();
-=======
-    //加载数据到界面
-    private void initData() {
->>>>>>> origin/master
+
         listAdapter=new MyNewsListAdapter();
         lv_newList.setAdapter(listAdapter);
 
@@ -178,11 +155,8 @@ public class ChannelNewsView {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(mActivity, NewsDetailActivity.class);
-<<<<<<< HEAD
                 String url = contentList.get(position - 2).getLink();
-=======
-                String url = contentList.get(position - 1).getLink();
->>>>>>> origin/master
+
                 intent.putExtra("url", url);
                 mActivity.startActivity(intent);
             }
@@ -207,7 +181,6 @@ public class ChannelNewsView {
 
     }
 
-<<<<<<< HEAD
     private void initCarousel() {
         imageViews = new ArrayList<>();
         for (int i = 0; i < imageIDs.length; i++) {
@@ -267,43 +240,36 @@ public class ChannelNewsView {
 
     }
 
-    private void refreshView() {
-        listAdapter.notifyDataSetChanged();
-        Toast.makeText(mActivity, "刷新成功", Toast.LENGTH_SHORT).show();
-    }
 
 
-
-=======
     private void refreshView() {
         listAdapter.notifyDataSetChanged();
         Toast.makeText(mActivity,"刷新成功",Toast.LENGTH_SHORT).show();
     }
 
-    private void initView() {
-        root=LayoutInflater.from(mActivity).inflate(R.layout.base_channel_news_layout,null);
-        lv_newList= (PullRefreshListView) root.findViewById(R.id.lv_newList);
-        rl_refresh= (RelativeLayout) root.findViewById(R.id.rl_refresh);
-        iv_refresh= (ImageView) root.findViewById(R.id.iv_refresh);
-        tv_refreshText= (TextView) root.findViewById(R.id.tv_refreshText);
+//    private void initView() {
+//        root=LayoutInflater.from(mActivity).inflate(R.layout.base_channel_news_layout,null);
+//        lv_newList= (PullRefreshListView) root.findViewById(R.id.lv_newList);
+//        rl_refresh= (RelativeLayout) root.findViewById(R.id.rl_refresh);
+//        iv_refresh= (ImageView) root.findViewById(R.id.iv_refresh);
+//        tv_refreshText= (TextView) root.findViewById(R.id.tv_refreshText);
+//
+//        iv_refresh.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                RotateAnimation ra = new RotateAnimation(0, 360, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+//                ra.setRepeatCount(3);
+//                ra.setDuration(900);
+//
+//                iv_refresh.startAnimation(ra);
+//                tv_refreshText.setText("正在刷新...");
+//                getDataFromServer(0);
+//            }
+//        });
+//        getDataFromLocal();
+//        getDataFromServer(0);
+//    }
 
-        iv_refresh.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                RotateAnimation ra = new RotateAnimation(0, 360, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
-                ra.setRepeatCount(3);
-                ra.setDuration(900);
-
-                iv_refresh.startAnimation(ra);
-                tv_refreshText.setText("正在刷新...");
-                getDataFromServer(0);
-            }
-        });
-        getDataFromLocal();
-        getDataFromServer(0);
-    }
-
->>>>>>> origin/master
     /**
      * 从本地获取数据
      */
@@ -359,12 +325,10 @@ public class ChannelNewsView {
                 timestamp= DateUtils.getCurTimestamp();
 
                 Message msg=new Message();
-<<<<<<< HEAD
+
 //                String url="https://route.showapi.com/109-35?channelId="+channelID+"&channelName="+channelName+"&needContent=0&needHtml=0&page=1&showapi_appid=16363&showapi_timestamp="+timestamp+"&title=%E6%96%B0%E9%97%BB&showapi_sign=56f27f8086be4e989a25b7d231a1287b";
                 String url = Config.getChannelNewsUrl(channelID, channelName, timestamp);
-=======
-                String url="https://route.showapi.com/109-35?channelId="+channelID+"&channelName="+channelName+"&needContent=0&needHtml=0&page=1&showapi_appid=16363&showapi_timestamp="+timestamp+"&title=%E6%96%B0%E9%97%BB&showapi_sign=56f27f8086be4e989a25b7d231a1287b";
->>>>>>> origin/master
+
                 String result= NetUtils.LoadJsonDataFromServer(url);
 
                 List<NewsDetails.ShowapiResBodyEntity.PagebeanEntity.ContentlistEntity> temp = getContentList(result);

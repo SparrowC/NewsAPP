@@ -1,11 +1,11 @@
 package com.vonnie.mynewsapp.activity.base.impl;
 
-<<<<<<< HEAD
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Looper;
 import android.os.Message;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
@@ -13,7 +13,6 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,20 +25,14 @@ import com.vonnie.mynewsapp.utils.NetUtils;
 
 import java.util.ArrayList;
 import java.util.List;
-=======
-import android.graphics.Color;
-import android.view.Gravity;
-import android.widget.TextView;
 
-import com.vonnie.mynewsapp.activity.MainActivity;
-import com.vonnie.mynewsapp.activity.base.BaseMainContent;
->>>>>>> origin/master
+
 
 /**
  * Created by vonnie on 2016/2/26.
  */
 public class MainSmartServiceView extends BaseMainContent {
-<<<<<<< HEAD
+
     private ListView lv_chatList;
     private EditText et_chatInput;
     private Button btn_chatSend;
@@ -64,15 +57,13 @@ public class MainSmartServiceView extends BaseMainContent {
             }
         }
     };
-=======
->>>>>>> origin/master
+
 
     public MainSmartServiceView() {
         super();
     }
 
     @Override
-<<<<<<< HEAD
     protected void initView() {
         super.initView();
         setTitle("智慧服务");
@@ -199,18 +190,19 @@ public class MainSmartServiceView extends BaseMainContent {
             this.text = text;
             this.isRight = isRight;
         }
-=======
-    protected void initData() {
-        setTitle("智慧服务");
-        TextView text = new TextView(mActivity);
-        text.setText("智慧服务");
-        text.setTextColor(Color.RED);
-        text.setTextSize(25);
-        text.setGravity(Gravity.CENTER);
 
-        // 向FrameLayout中动态添加布局
-        fl_content.addView(text);
+        protected void initData() {
+            setTitle("智慧服务");
+            TextView text = new TextView(mActivity);
+            text.setText("智慧服务");
+            text.setTextColor(Color.RED);
+            text.setTextSize(25);
+            text.setGravity(Gravity.CENTER);
 
->>>>>>> origin/master
+            // 向FrameLayout中动态添加布局
+            fl_content.addView(text);
+
+
+        }
     }
 }

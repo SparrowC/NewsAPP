@@ -7,19 +7,12 @@
         android:id="@+id/vp_main"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/master
         android:layout_weight="1">
 
     </com.vonnie.mynewsapp.view.NoScrollViewPager>
 
     <RadioGroup
-<<<<<<< HEAD
         android:id="@+id/rg_bottom"
-=======
->>>>>>> origin/master
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
