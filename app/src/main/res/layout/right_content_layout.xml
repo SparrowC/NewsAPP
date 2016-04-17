@@ -32,15 +32,15 @@
             style="@style/MenuTabStyle"
             android:text="智慧服务"
             android:drawableTop="@drawable/tab_menu_smartservice_selector" />
-        <RadioButton
-            android:id="@+id/rb_gov"
-            style="@style/MenuTabStyle"
-            android:text="政务"
-            android:drawableTop="@drawable/tab_menu_gov_selector" />
-        <RadioButton
-            android:id="@+id/rb_setting"
-            style="@style/MenuTabStyle"
-            android:text="设置"
-            android:drawableTop="@drawable/tab_menu_setting_selector" />
+        <!--<RadioButton-->
+            <!--android:id="@+id/rb_gov"-->
+            <!--style="@style/MenuTabStyle"-->
+            <!--android:text="圈子"-->
+            <!--android:drawableTop="@drawable/tab_menu_gov_selector" />-->
+        <!--<RadioButton-->
+            <!--android:id="@+id/rb_setting"-->
+            <!--style="@style/MenuTabStyle"-->
+            <!--android:text="设置"-->
+            <!--android:drawableTop="@drawable/tab_menu_setting_selector" />-->
     </RadioGroup>
 </LinearLayout>

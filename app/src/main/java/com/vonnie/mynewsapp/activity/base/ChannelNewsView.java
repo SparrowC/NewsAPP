@@ -112,6 +112,7 @@ public class ChannelNewsView {
         this.channelID=channelId;
         this.channelName=name;
         initView();
+
     }
 
     private void initView() {
@@ -165,16 +166,17 @@ public class ChannelNewsView {
         lv_newList.setOnRefreshListener(new PullRefreshListView.OnRefreshListener() {
             @Override
             public void OnPullRefresh() {
-
+                //向下拉刷新列表时
             }
 
             @Override
             public void OnReleaseRefresh() {
-
+                //向下拉后，释放手时
             }
 
             @Override
             public void OnRefreshing() {
+                //刷新时
                 getDataFromServer(1);
             }
         });
@@ -247,28 +249,6 @@ public class ChannelNewsView {
         Toast.makeText(mActivity,"刷新成功",Toast.LENGTH_SHORT).show();
     }
 
-//    private void initView() {
-//        root=LayoutInflater.from(mActivity).inflate(R.layout.base_channel_news_layout,null);
-//        lv_newList= (PullRefreshListView) root.findViewById(R.id.lv_newList);
-//        rl_refresh= (RelativeLayout) root.findViewById(R.id.rl_refresh);
-//        iv_refresh= (ImageView) root.findViewById(R.id.iv_refresh);
-//        tv_refreshText= (TextView) root.findViewById(R.id.tv_refreshText);
-//
-//        iv_refresh.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                RotateAnimation ra = new RotateAnimation(0, 360, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
-//                ra.setRepeatCount(3);
-//                ra.setDuration(900);
-//
-//                iv_refresh.startAnimation(ra);
-//                tv_refreshText.setText("正在刷新...");
-//                getDataFromServer(0);
-//            }
-//        });
-//        getDataFromLocal();
-//        getDataFromServer(0);
-//    }
 
     /**
      * 从本地获取数据
@@ -321,12 +301,10 @@ public class ChannelNewsView {
             @Override
             public void run() {
                 Looper.prepare();
-                //timestamp="20160229215000";
                 timestamp= DateUtils.getCurTimestamp();
 
                 Message msg=new Message();
 
-//                String url="https://route.showapi.com/109-35?channelId="+channelID+"&channelName="+channelName+"&needContent=0&needHtml=0&page=1&showapi_appid=16363&showapi_timestamp="+timestamp+"&title=%E6%96%B0%E9%97%BB&showapi_sign=56f27f8086be4e989a25b7d231a1287b";
                 String url = Config.getChannelNewsUrl(channelID, channelName, timestamp);
 
                 String result= NetUtils.LoadJsonDataFromServer(url);

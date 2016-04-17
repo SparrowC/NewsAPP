@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tv_mainTitle"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:text="发表圈子"
+            android:gravity="center_horizontal|center_vertical"
+            android:textSize="35dp"
+            android:textColor="#fff"
+            android:background="@drawable/title_red_bg"/>
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/back"
+            android:onClick="back"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"/>
+    </RelativeLayout>
+    <EditText
+        android:id="@+id/et_circleInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="发布"
+        android:onClick="send"/>
+</LinearLayout>

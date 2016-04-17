@@ -27,4 +27,19 @@ public class Config {
         return "https://route.showapi.com/60-27?info=" + info + "&showapi_appid=2992&showapi_timestamp=" + time + "&userid=userid&showapi_sign=ccd3b9a741a94c8d9cf1e72332d311ca";
     }
 
+    public static String ip="http://172.16.9.246:8080/NewsApp/";
+    public static String showCircleURL=ip+"Show";
+    public static String addCircleURL=ip+"Add";
+    public static String registURL=ip+"Regist";
+    public static String loginURL=ip+"Login";
+    public static String getAddCircleURL(String username,String news){
+        return addCircleURL+"?user="+username+"&news="+news;
+    }
+    public static String getRegistURL(String username,String password){
+        return registURL+"?user="+username+"&password="+password;
+    }
+    public static String getLoginURL(String username,String password){
+        return loginURL+"?user="+username+"&password="+password;
+    }
+
 }

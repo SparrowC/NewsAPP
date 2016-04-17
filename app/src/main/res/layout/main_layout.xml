@@ -4,7 +4,6 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
-
     <com.jeremyfeinstein.slidingmenu.lib.SlidingMenu
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -13,8 +12,6 @@
         sliding:viewBehind="@layout/left_menu_layout"
         sliding:touchModeAbove="margin"
         sliding:fadeEnabled="true"
-        sliding:shadowWidth="10dp"
-        sliding:behindWidth="150dp">
-
+        sliding:behindWidth="250dp">
     </com.jeremyfeinstein.slidingmenu.lib.SlidingMenu>
 </LinearLayout>
