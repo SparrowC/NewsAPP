@@ -12,7 +12,6 @@
 -----------
 朋友圈的功能
 
-
 ![朋友圈](https://github.com/SparrowC/NewsAPP/blob/master/pengyouquan.gif)
 
 
