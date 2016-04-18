@@ -25,24 +25,29 @@ public class ShareActivity extends BaseActivity {
     {
         final String name=SharedPreferencesUtils.getString(this,"username","");
         if(name.equals("")){
-
+            showMessage("请先登录！");
+            startActivity(RegistActivity.class);
+            this.finish();
         }else{
+            String input=et_circleInput.getText().toString();
+            if(!input.equals("")){
+                NetUtils.SyncPost(this, Config.getAddCircleURL(name, input), new NetUtils.NetWork() {
+                    @Override
+                    public void onSuccess(String result) {
+                        if (result.equals("1")) {
+                            showMessage("发布成功！");
+                            ShareActivity.this.finish();
+                        } else
+                            showMessage("服务器正在维护中，稍后再试！");
+                    }
 
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    final String result=NetUtils.PostToServer(Config.getAddCircleURL(name,et_circleInput.getText().toString()));
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            if(result.equals("1"))
-                                showMessage("发送成功！");
-                            else
-                                showMessage("请检查网络！");
-                        }
-                    });
-                }
-            }).start();
+                    @Override
+                    public void onFailed(String result) {
+                        showMessage("请检查网络！");
+                    }
+                });
+            }else
+                showMessage("输入不能为空！");
 
         }
     }

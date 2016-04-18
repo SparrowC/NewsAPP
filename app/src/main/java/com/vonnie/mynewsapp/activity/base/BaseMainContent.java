@@ -62,8 +62,4 @@ public class BaseMainContent extends Fragment{
         tv_mainTitle.setText(title);
     }
 
-//    public View getView()
-//    {
-//        return root;
-//    }
 }

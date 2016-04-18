@@ -65,23 +65,18 @@ public class MainActivity extends FragmentActivity {
         rb_home = (RadioButton) findViewById(R.id.rb_home);
         rb_newscenter = (RadioButton) findViewById(R.id.rb_newscenter);
         rb_smartservice = (RadioButton) findViewById(R.id.rb_smartservice);
-//        rb_gov = (RadioButton) findViewById(R.id.rb_gov);
-//        rb_setting = (RadioButton) findViewById(R.id.rb_setting);
+
 
         MainHomeView homeView = new MainHomeView();
         MainNewsView newsView = new MainNewsView();
         MainSmartServiceView smartServiceView = new MainSmartServiceView();
-//        MainCircleView govView = new MainCircleView();
-//        MainSettingView settingView = new MainSettingView();
+
 
         mainViewList = new ArrayList<>();
         mainViewList.add(homeView);
         mainViewList.add(newsView);
         mainViewList.add(smartServiceView);
-//        mainViewList.add(govView);
-//        mainViewList.add(settingView);
 
-        //menu button
         btn_home = (Button) findViewById(R.id.btn_home);
         btn_newsCenter = (Button) findViewById(R.id.btn_newsCenter);
         btn_setting = (Button) findViewById(R.id.btn_setting);
@@ -119,8 +114,6 @@ public class MainActivity extends FragmentActivity {
         rb_home.setOnClickListener(new MyOnRadioButtonClickedListener(0));
         rb_newscenter.setOnClickListener(new MyOnRadioButtonClickedListener(1));
         rb_smartservice.setOnClickListener(new MyOnRadioButtonClickedListener(2));
-//        rb_gov.setOnClickListener(new MyOnRadioButtonClickedListener(3));
-//        rb_setting.setOnClickListener(new MyOnRadioButtonClickedListener(4));
 
         vp_main.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override

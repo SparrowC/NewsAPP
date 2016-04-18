@@ -14,9 +14,11 @@ import java.util.List;
  * Created by Vonnie on 2016/4/17.
  */
 public class CircleInfo {
+
     /**
-     * user : admin
-     * news : 第一条测试消息
+     * user : first
+     * news : 你好啊
+     * date : 2016-04-18 00:00:00
      */
 
     private List<CircleEntity> circle;
@@ -76,6 +78,7 @@ public class CircleInfo {
     public static class CircleEntity {
         private String user;
         private String news;
+        private String date;
 
         public static CircleEntity objectFromData(String str) {
 
@@ -129,12 +132,20 @@ public class CircleInfo {
             this.news = news;
         }
 
+        public void setDate(String date) {
+            this.date = date;
+        }
+
         public String getUser() {
             return user;
         }
 
         public String getNews() {
             return news;
+        }
+
+        public String getDate() {
+            return date;
         }
     }
 }

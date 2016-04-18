@@ -31,9 +31,7 @@ public class NewsDetailActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.news_detail_layout);
-//        url=getIntent().getStringExtra("url");
-//        initView();
-//        initData();
+
     }
 
     @Override

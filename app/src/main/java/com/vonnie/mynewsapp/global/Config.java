@@ -15,7 +15,7 @@ public class Config {
 
     public static String newsChannelUrl="https://route.showapi.com/109-34?showapi_appid=2992&showapi_timestamp="+timestamp+"&showapi_sign=ccd3b9a741a94c8d9cf1e72332d311ca";
 
-    public static String myNewsURL="http://121.42.208.111/MyNews/";
+    public static String myNewsURL="http://ip/MyNews/";
 
 
     public static String getChannelNewsUrl(String ID, String name, String time) {
@@ -27,11 +27,18 @@ public class Config {
         return "https://route.showapi.com/60-27?info=" + info + "&showapi_appid=2992&showapi_timestamp=" + time + "&userid=userid&showapi_sign=ccd3b9a741a94c8d9cf1e72332d311ca";
     }
 
-    public static String ip="http://172.16.9.246:8080/NewsApp/";
-    public static String showCircleURL=ip+"Show";
-    public static String addCircleURL=ip+"Add";
-    public static String registURL=ip+"Regist";
-    public static String loginURL=ip+"Login";
+
+    static {
+        System.loadLibrary("vonnie");
+    }
+    public static native String getIPURL();
+
+    public static String showCircleURL=getIPURL()+"Show";
+    public static String addCircleURL=getIPURL()+"Add";
+    public static String registURL=getIPURL()+"Regist";
+    public static String loginURL=getIPURL()+"Login";
+
+
     public static String getAddCircleURL(String username,String news){
         return addCircleURL+"?user="+username+"&news="+news;
     }

@@ -27,6 +27,7 @@
         android:id="@+id/et_circleInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="你好啊"
         />
     <Button
         android:layout_width="wrap_content"

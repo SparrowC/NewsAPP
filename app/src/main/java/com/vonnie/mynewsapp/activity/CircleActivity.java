@@ -15,12 +15,16 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.vonnie.mynewsapp.R;
 import com.vonnie.mynewsapp.beans.CircleInfo;
 import com.vonnie.mynewsapp.global.Config;
 import com.vonnie.mynewsapp.utils.NetUtils;
+import com.vonnie.mynewsapp.utils.SharedPreferencesUtils;
+
+import org.w3c.dom.Text;
 
 import java.util.List;
 
@@ -48,6 +52,8 @@ public class CircleActivity extends BaseActivity {
     private List<CircleInfo.CircleEntity> mCircleEntitise;
     private ProgressBar pb_bar;
     private ImageView iv_back,iv_add;
+    private RelativeLayout circle_bkg;
+    private TextView tv_circleUsername;
 
 
     @Override
@@ -65,18 +71,24 @@ public class CircleActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        iv_userImageCircle= (ImageView) findViewById(R.id.iv_userImageCircle);
         lv_circles= (ListView) findViewById(R.id.lv_circles);
         pb_bar= (ProgressBar) findViewById(R.id.pb_bar);
+
+        iv_userImageCircle= (ImageView) findViewById(R.id.iv_userImageCircle);
         iv_back= (ImageView) findViewById(R.id.iv_back);
         iv_add= (ImageView) findViewById(R.id.iv_add);
+        tv_circleUsername= (TextView) findViewById(R.id.tv_circleUsername);
+//        circle_bkg= (RelativeLayout) LayoutInflater.from(this).inflate(R.layout.circle_backgroud_layout, null);
+//        iv_userImageCircle= (ImageView) circle_bkg.findViewById(R.id.iv_userImageCircle);
+//        iv_back= (ImageView) circle_bkg.findViewById(R.id.iv_back);
+//        iv_add= (ImageView) circle_bkg.findViewById(R.id.iv_add);
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void initData() {
-//        setTitle("圈子");
 
+        tv_circleUsername.setText(SharedPreferencesUtils.getString(this,"username",""));
         pb_bar.setVisibility(View.VISIBLE);
         iv_back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,36 +112,6 @@ public class CircleActivity extends BaseActivity {
         iv_userImageCircle.setClipToOutline(true);
         getDataFromServer();
 
-//        ImageView iv1 = new ImageView(mActivity);
-//        iv1.setImageResource(R.drawable.kobe);
-//        ImageView iv2 = new ImageView(mActivity);
-//        iv2.setImageResource(R.drawable.kobe1);
-//        imageViews.add(iv1);
-//        imageViews.add(iv2);
-//        vp_carousel.setAdapter(new PagerAdapter() {
-//            @Override
-//            public int getCount() {
-//                return 2;
-//            }
-//
-//            @Override
-//            public boolean isViewFromObject(View view, Object object) {
-//                return view == object;
-//            }
-//
-//            @Override
-//            public void destroyItem(ViewGroup container, int position, Object object) {
-//                container.removeView((View) object);
-//            }
-//
-//            @Override
-//            public Object instantiateItem(ViewGroup container, int position) {
-//                container.addView(imageViews.get(position));
-//                return imageViews.get(position);
-//            }
-//        });
-//        cpi_indicator.setVisibility(View.VISIBLE);
-//        cpi_indicator.setViewPager(vp_carousel);
 
     }
 
@@ -139,11 +121,14 @@ public class CircleActivity extends BaseActivity {
             public void run() {
                 String result= NetUtils.LoadJsonDataFromServer(Config.showCircleURL);
                 Log.d("CircleInfo", result);
-                CircleInfo mCircleInfo=CircleInfo.objectFromData(result);
-                mCircleEntitise =mCircleInfo.getCircle();
-                Message msg=new Message();
-                msg.what=11;
-                mHandler.sendMessage(msg);
+                if(!result.equals(""))
+                {
+                    CircleInfo mCircleInfo=CircleInfo.objectFromData(result);
+                    mCircleEntitise =mCircleInfo.getCircle();
+                    Message msg=new Message();
+                    msg.what=11;
+                    mHandler.sendMessage(msg);
+                }
             }
         }).start();
     }
@@ -175,12 +160,23 @@ public class CircleActivity extends BaseActivity {
                 holder.item_userImage= (ImageView) convertView.findViewById(R.id.item_userImage);
                 holder.item_circles= (TextView) convertView.findViewById(R.id.item_circles);
                 holder.item_userName= (TextView) convertView.findViewById(R.id.item_userName);
+                holder.item_time= (TextView) convertView.findViewById(R.id.item_time);
 
                 convertView.setTag(holder);
             }else
                 holder= (ViewHolder) convertView.getTag();
-            holder.item_userName.setText(mCircleEntitise.get(position).getUser());
+
+            String name=mCircleEntitise.get(position).getUser();
+            if(name.equals(SharedPreferencesUtils.getString(CircleActivity.this,"username","")))
+                holder.item_userImage.setImageResource(R.drawable.image);
+            else
+                holder.item_userImage.setImageResource(R.drawable.ic_launcher);
+
+
+            holder.item_userName.setText(name);
             holder.item_circles.setText(mCircleEntitise.get(position).getNews());
+            holder.item_time.setText(mCircleEntitise.get(position).getDate());
+
             holder.item_userImage.setOutlineProvider(new ViewOutlineProvider() {
                 @Override
                 public void getOutline(View view, Outline outline) {
@@ -192,7 +188,7 @@ public class CircleActivity extends BaseActivity {
         }
     }
     class ViewHolder{
-        TextView item_circles,item_userName;
+        TextView item_circles,item_userName,item_time;
         ImageView item_userImage;
     }
 }
