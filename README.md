@@ -8,9 +8,9 @@
 
 ![功能演示](https://raw.githubusercontent.com/SparrowC/NewsAPP/master/news.gif)
 
-
 -----------
-朋友圈的功能
+朋友圈的功能：
+
 
 ![朋友圈](https://github.com/SparrowC/NewsAPP/blob/master/pengyouquan.gif)
 
