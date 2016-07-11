@@ -16,7 +16,7 @@ import android.widget.LinearLayout;
 import com.vonnie.mynewsapp.R;
 
 /**
- * Created by Kung、 on 2016/2/9.
+ * Created by Kun、 on 2016/2/9.
  */
 public class DrawView extends HorizontalScrollView {
     private LinearLayout mWrap;

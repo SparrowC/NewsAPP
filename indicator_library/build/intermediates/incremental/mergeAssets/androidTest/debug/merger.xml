@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="debug"><source path="E:\WorkPlace\Android\workplace\MyNewsAPP\indicator_library\build\intermediates\bundles\debug\assets"/></dataSet><dataSet config="main"><source path="E:\WorkPlace\Android\workplace\MyNewsAPP\indicator_library\src\androidTest\assets"/></dataSet></merger>
+<merger version="3"><dataSet config="debug"><source path="E:\Code\workplace\MyNewsAPP\indicator_library\build\intermediates\bundles\debug\assets"/></dataSet><dataSet config="main"><source path="E:\Code\workplace\MyNewsAPP\indicator_library\src\androidTest\assets"/></dataSet></merger>

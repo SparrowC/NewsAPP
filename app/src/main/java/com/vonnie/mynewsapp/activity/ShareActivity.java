@@ -20,6 +20,7 @@ public class ShareActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.send_circle_layout);
         et_circleInput= (EditText) findViewById(R.id.et_circleInput);
+
     }
     public void send(View v)
     {

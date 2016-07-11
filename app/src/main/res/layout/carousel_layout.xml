@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:costum="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="200dp">
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp_carousel"
+        android:layout_height="200dp"
+        android:layout_width="match_parent"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="#6000"
+        android:layout_alignParentBottom="true">
+        <TextView
+            android:id="@+id/tv_carouselTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="科比"
+            android:textColor="#cfff"
+            android:textSize="20dp"
+            android:paddingLeft="10dp"
+            android:layout_centerVertical="true"
+            />
+
+        <com.viewpagerindicator.CirclePageIndicator
+            android:id="@+id/cpi_indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingTop="15dp"
+            android:paddingLeft="5dp"
+            costum:radius="5dp"
+            costum:fillColor="#9f00"
+            costum:pageColor="#fff"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"/>
+    </RelativeLayout>
+</RelativeLayout>
